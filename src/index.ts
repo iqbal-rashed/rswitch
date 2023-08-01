@@ -29,5 +29,3 @@ export function rswitch(
         return typeof value === "function" && !fnCall ? value() : value;
     }
 }
-
-export default rswitch;
