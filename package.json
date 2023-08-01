@@ -1,7 +1,9 @@
 {
     "name": "rswitch",
+    "description": "The rswitch library provides a compact and flexible way to implement switch-like functionality in JavaScript. It allows you to define cases and their corresponding actions using an object literal syntax.",
     "private": true,
     "version": "0.1.0",
+    "author": "Rashed Iqbal",
     "type": "module",
     "files": [
         "dist"
@@ -16,18 +18,29 @@
     "module": "./dist/rswitch.es.js",
     "types": "./dist/index.d.ts",
     "scripts": {
-        "dev": "vite",
-        "build": "tsc && vite build",
-        "preview": "vite preview"
+        "build": "tsc && vite build"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/iqbal-rashed/outsideclick-react"
+    },
+    "keywords": [
+        "rswitch",
+        "switch case",
+        "switch",
+        "javascript"
+    ],
+    "bugs": {
+        "url": "https://github.com/iqbal-rashed/rswitch/issues"
+    },
+    "homepage": "https://github.com/iqbal-rashed/rswitch",
+    "license": "MIT",
     "devDependencies": {
         "@types/node": "^20.4.5",
         "typescript": "^5.0.2",
         "vite": "^4.4.5",
         "vite-plugin-dts": "^3.4.0",
+        "vite-plugin-linter": "^2.0.2",
         "vite-tsconfig-paths": "^4.2.0"
-    },
-    "dependencies": {
-        "vite-plugin-linter": "^2.0.2"
     }
 }
