@@ -37,3 +37,13 @@ test("check mulitple case", () => {
     })
   ).toBe("two");
 });
+
+test("check array key value", () => {
+  expect(
+    rswitch("2", [
+      ["1", "one"],
+      ["hello, 2", "two"],
+      ["", "default"],
+    ])
+  ).toBe("two");
+});
