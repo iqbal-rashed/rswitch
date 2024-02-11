@@ -20,46 +20,46 @@ The `rswitch` function takes a key and an object containing cases and actions. I
 rswitch(key, casesObj, options);
 ```
 
--   `key` : The value to evaluate against the cases.
--   `casesObj` : An object containing cases and their actions.
--   `options` : (Optional) An object to customize the behavior of the rswitch function.
-    -   `returnFunction` (optional, default: false): If set to `false`, the `rswitch` function will call actions that are functions and return their values. If set to `true`, the function will return the functions as is.
+- `key` : The value to evaluate against the cases.
+- `casesObj` : An object containing cases and their actions.
+- `options` : (Optional) An object to customize the behavior of the rswitch function.
+  - `returnFn` (optional, default: false): If set to `false`, the `rswitch` function will call actions that are functions and return their values. If set to `true`, the function will return the functions as is.
 
 ### Example
 
 ```javascript
-import { rswitch } from "rswitch";
+import rswitch from "rswitch";
 // const {rswitch} = require("rswitch") // commonjs
 
 const result = rswitch(
-    "dev",
-    {
-        designer: "Designer",
-        "dev, web": "Freelancer",
-        "": () => {
-            console.log("Hello");
-        },
+  "dev",
+  {
+    designer: "Designer",
+    "dev, web": "Developer",
+    "": () => {
+      console.log("Hello");
     },
-    {
-        returnFunction: true,
-    }
+  },
+  {
+    returnFn: true,
+  }
 );
 
 console.log(result);
-// Output: Freelancer
+// Output: Developer
 ```
 
-In this example, the `rswitch` function evaluates the key `'dev'` against the cases defined in `casesObj`. Since it matches the case `'dev, web'`, the corresponding action `'Freelancer'` is returned and assigned to the `result` variable. Finally, the value of `result` is logged to the console.
+In this example, the `rswitch` function evaluates the key `'dev'` against the cases defined in `casesObj`. Since it matches the case `'dev, web'`, the corresponding action `'Developer'` is returned and assigned to the `result` variable. Finally, the value of `result` is logged to the console.
 
 ### Case Definitions
 
 Cases are defined as key-value pairs in the `casesObj` object.
 
--   Single Case: `{ caseKey: action }`
--   Multiple Cases: `{ 'case1, case2, case3': action }`
--   Default Case: `{ '': action }`
+- Single Case: `{ caseKey: action }`
+- Multiple Cases: `{ 'case1, case2, case3': action }`
+- Default Case: `{ '': action }`
 
-> Actions can be any value or a function that returns a value. If the action is a function, and the `options` object has `returnFunction` set to `false`, it is called, and the returned value is returned.
+> Actions can be any value or a function that returns a value. If the action is a function, and the `options` object has `returnFn` set to `false`, it is called, and the returned value is returned.
 
 If no cases match the evaluated key, the `rswitch` function checks for a default case. If a default case is defined, its corresponding action is performed. If no default case is defined or its action is not provided, `undefined` is returned.
 

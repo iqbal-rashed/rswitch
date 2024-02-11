@@ -3,32 +3,33 @@ type RSwitch = {
 };
 
 type Options = {
-  returnFunction?: boolean;
+  returnFn?: boolean;
 };
 
-function rswitch(
-  key: string | undefined,
-  rswitch: RSwitch,
+export function rswitch<T = any>(
+  rcase: string | number | undefined | null,
+  rs: RSwitch,
   options?: Options
-): any {
-  const fnCall = options?.returnFunction || false;
-
-  const value = rswitch[key!];
-
-  const filtered = Object.keys(rswitch).filter((v) => v.includes(","));
-
-  const keys = filtered.flatMap((v) => v.split(",")).map((v) => v.trim());
-  if (!value) {
-    if (keys.includes(key!)) {
-      const findKey = filtered.find((v) => v.includes(key!));
-      const multiValue = rswitch[findKey!];
-      return typeof multiValue === "function" && !fnCall
-        ? multiValue()
-        : multiValue;
+): T | undefined {
+  for (const [key, value] of Array.isArray(rs) ? rs : Object.entries(rs)) {
+    if (key.includes(",")) {
+      let spiltKey = key.split(",").map((v: string) => v.trim());
+      if (spiltKey.includes(String(rcase))) {
+        return returnFunction(value, options);
+      }
     }
-    const _default = rswitch[""];
-    return typeof _default === "function" && !fnCall ? _default() : _default;
-  } else {
-    return typeof value === "function" && !fnCall ? value() : value;
+    if (key === String(rcase)) {
+      return returnFunction(value, options);
+    }
+    if (key === "") {
+      return returnFunction(value, options);
+    }
   }
 }
+
+function returnFunction(value: any, options?: Options) {
+  const returnFn = options?.returnFn || false;
+  return typeof value === "function" ? (!returnFn ? value() : value) : value;
+}
+
+export default rswitch;
