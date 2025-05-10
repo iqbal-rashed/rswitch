@@ -1,23 +1,25 @@
 {
   "name": "rswitch",
   "description": "The rswitch library provides a compact and flexible way to implement switch-like functionality in JavaScript. It allows you to define cases and their corresponding actions using an object literal syntax.",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "author": "Rashed Iqbal",
   "files": [
     "dist"
   ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/rswitch.es.js",
-      "require": "./dist/rswitch.umd.js"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
-  "main": "./dist/rswitch.umd.js",
-  "module": "./dist/rswitch.es.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "tsup",
+    "lint": "eslint .",
     "test": "jest --verbose false"
   },
   "repository": {
@@ -32,7 +34,24 @@
     "conditional",
     "react",
     "node",
-    "typescript"
+    "typescript",
+    "functional programming",
+    "decision making",
+    "pattern matching",
+    "programming utility",
+    "asynchronous",
+    "async",
+    "promise",
+    "callback",
+    "case statements",
+    "switch statement",
+    "js",
+    "ts",
+    "custom switch",
+    "dynamic switch",
+    "typescript library",
+    "helper function",
+    "custom conditional logic"
   ],
   "bugs": {
     "url": "https://github.com/iqbal-rashed/rswitch/issues"
@@ -40,13 +59,17 @@
   "homepage": "https://github.com/iqbal-rashed/rswitch",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.4.5",
+    "@eslint/js": "^9.26.0",
+    "@types/jest": "^29.5.14",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "globals": "^16.1.0",
     "jest": "^29.7.0",
-    "ts-jest": "^29.1.2",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.5",
-    "vite-plugin-dts": "^3.4.0",
-    "vite-tsconfig-paths": "^4.2.0"
+    "prettier": "^3.5.3",
+    "ts-jest": "^29.3.2",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.0"
   }
 }
