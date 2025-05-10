@@ -1,7 +1,7 @@
 {
   "name": "rswitch",
   "description": "The rswitch library provides a compact and flexible way to implement switch-like functionality in JavaScript. It allows you to define cases and their corresponding actions using an object literal syntax.",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "author": "Rashed Iqbal",
   "files": [
     "dist"

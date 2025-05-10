@@ -36,6 +36,7 @@ rswitchAsync(key: string | number | undefined | null, casesObj: RSwitch, options
 
 ```typescript
 import rswitch from "rswitch";
+// const {rswitch} = require("rswitch") // commonjs
 
 // Example usage of rswitch (synchronous)
 const result = rswitch("dev", {
@@ -51,6 +52,7 @@ console.log(result); // Output: "Developer"
 
 ```typescript
 import { rswitchAsync } from "rswitch";
+// const {rswitchAsync} = require("rswitch") // commonjs
 
 // Example usage of rswitchAsync (asynchronous)
 async function testAsyncSwitch() {
@@ -113,24 +115,29 @@ If `rcase` is `undefined` or `null`, and no default case (`""`) is defined in `c
 
 ```typescript
 import rswitch, { rswitchAsync } from "rswitch";
+// const { rswitch, rswitchAsync } = require("rswitch"); // commonjs
 
-const result = rswitch("web", {
+const result1 = rswitch("web", {
   "dev, web": "Developer",
   designer: "Designer",
   "": "No match found", // Default case
 });
 
-console.log(result); // Output: "Developer"
+console.log("sync", result1); // Output: "Developer"
 
-const result = await rswitchAsync("web", {
-  "dev, web": async () => {
-    return "Developer"; // Async case
-  },
-  designer: "Designer",
-  "": "No match found", // Default case
-});
+async function testAsyncSwitch() {
+  const result2 = await rswitchAsync("web", {
+    "dev, web": async () => {
+      return "Developer"; // Async case
+    },
+    designer: "Designer",
+    "": "No match found", // Default case
+  });
 
-console.log(result); // Output: "Developer" (async case)
+  console.log("async", result2); // Output: "Developer" (async case)
+}
+
+testAsyncSwitch();
 ```
 
 ### Notes
